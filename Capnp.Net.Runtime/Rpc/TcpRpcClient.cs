@@ -269,13 +269,13 @@ namespace Capnp.Rpc
         /// Gets the remote port number which this client is connected to, 
         /// or null if the connection is not yet established.
         /// </summary>
-        public int? RemotePort => ((IPEndPoint)_client.Client.RemoteEndPoint)?.Port;
+        public int? RemotePort => _client.Client.RemoteEndPoint is IPEndPoint ep ? (int?) ep.Port : null;
 
         /// <summary>
         /// Gets the local port number which this client using, 
         /// or null if the connection is not yet established.
         /// </summary>
-        public int? LocalPort => ((IPEndPoint)_client.Client.LocalEndPoint)?.Port;
+        public int? LocalPort => _client.Client.LocalEndPoint is IPEndPoint ep ? (int?) ep.Port : null;
 
         /// <summary>
         /// Whether the I/O thread is currently running
